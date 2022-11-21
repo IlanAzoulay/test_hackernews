@@ -7,7 +7,8 @@ import Navbar from '../components/Navbar'
 
 export default function StoriesContainer() {
 
-    const step = 10;
+    const step = 20;
+    const autorefreshStep = 30 * 1000;
 
     const [storyIDs, setStoryIDs] = useState<number[]>([]);
     const [endIndex, setEndIndex] = useState<number>(10);  // show stories from 0 to index
@@ -19,7 +20,7 @@ export default function StoriesContainer() {
     // First render
     useEffect(() => {
         (async () => {
-          await LoadNewIDs();
+            await LoadNewIDs();
         })();
     }, [refreshing]);
     // Stories update when we update the list of IDs
@@ -30,6 +31,15 @@ export default function StoriesContainer() {
           })();
     }, [storyIDs])
 
+    useEffect(() => {
+        const interval = setInterval(() => autorefresh(), autorefreshStep);
+      }, []);
+
+    function autorefresh() {
+        console.log("auto refreshing");
+        setRefreshing(!refreshing)
+    }
+    
     async function LoadNewIDs() {
         setStoryIDs([]);
         if (newest){
