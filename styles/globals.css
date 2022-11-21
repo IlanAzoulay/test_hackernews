@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 html,
 body {
   padding: 0;
@@ -15,12 +19,82 @@ a {
   box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
+.stories-supercontainer {
+  @apply bg-white w-full;
+}
+.stories-container {
+  @apply flex flex-col gap-2 px-4;
+  border-bottom-width: 1px;
+}
+
+.button-loadmore {
+  @apply ml-4 my-4 px-4 py-2 font-normal;
+  @apply border-black;
+  border-width: 1px;
+}
+.button-loadmore:hover {
+  @apply font-bold;
+  border-width: 2px;
+  transform: translate(-1px, -1px);
+}
+
+.story-container {
+  @apply flex flex-row py-2 gap-2;
+  @apply border-gray-400;
+  border-bottom-width: 1px;
+}
+
+.story-flex-up {
+  @apply flex flex-row gap-2;
+  @apply align-baseline items-baseline;
+}
+.story-flex-down {
+  @apply flex flex-row gap-1;
+}
+
+.numero, .title {
+  @apply text-lg;
+}
+.extra-info, .extra-text {
+  @apply text-sm;
+}
+.url {
+  @apply italic text-base cursor-pointer;
+}
+
+.numero, .url, .extra-text {
+  @apply text-gray-500;
+}
+
+.title, .extra-info {
+  @apply cursor-pointer;
+  @apply text-black;
+}
+
+.navbar {
+  @apply fixed top-0 left-0 right-0 bg-yellow-400;
+}
+.navbar-left {
+  @apply float-left flex flex-row gap-2 align-middle items-baseline;
+  padding-left: 5%;
+}
+.navbar-title, .navbar-refresh {
+  @apply py-4 text-xl font-bold pr-1;
+}
+.navbar-refresh {
+  @apply absolute cursor-pointer;
+  top: 50%;
+  right: 5%;
+  transform: translate(-50%, -50%);
+}
+.navbar-options-picked, .navbar-options-unpicked {
+  @apply text-sm text-gray-900 border-gray-900 cursor-pointer;
+}
+.navbar-options-picked {
+  @apply opacity-100;
+  border-bottom-width: 1px;
+}
+.navbar-options-unpicked {
+  @apply opacity-70;
+  border-bottom-width: 0px;
 }
